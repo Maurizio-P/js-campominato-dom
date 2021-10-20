@@ -1,0 +1,24 @@
+.bg-color {
+    background-color: #7FFFD4;
+    padding: 50px 0;
+}
+
+.container-grid {
+    width: 600px;
+    height: 600px;
+    border: 1px solid black;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+.active{
+    background-color: blueviolet;
+    color: white;
+}
+
+.square {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
