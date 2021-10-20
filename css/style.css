@@ -16,6 +16,10 @@
     color: white;
 }
 
+.bomb{
+    background-color: red;
+}
+
 .square {
     border: 1px solid black;
     display: flex;

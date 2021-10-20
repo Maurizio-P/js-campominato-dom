@@ -11,19 +11,20 @@
 const difficolta = document.getElementById("difficolta")
 const start = document.getElementById("start")
 const containerGrid = document.querySelector(".container-grid")
-
+let bombe;
+let totalCell
 console.log(difficolta, start, containerGrid)
 // 2
 
 start.addEventListener("click", function(){
     const valueDif = difficolta.value 
     // 2.1 recupero la const che mi indica quante celle devo creare
-    const totalCell = numCell(valueDif)
+    totalCell = numCell(valueDif)
     console.log(totalCell)
     
     // 3 stampare la griglia in base al livello scelto
+    bombe = generatebombNumb(16, totalCell)
     gridCreate(totalCell)
-    cell.addEventListener("click", cellClick)
 })
 
 
@@ -60,9 +61,44 @@ function gridCreate(num){
         cell.addEventListener("click", cellClick)
         containerGrid.append(cell)
     }
-    
+
 }
 
+// function cellClick(){
+//     console.log(event.target.innerText)
+//     const numeroCella = parseInt(event.target.innerText)
+//     if (bombe.includes(numeroCella)){
+//         this.classList.add("bomb")
+//         alert("Hai calpestato una bomba, prova a vincere nella prossima vita")
+//         location.reload()
+//     }
+//     this.classList.toggle("active")
+// }
+
 function cellClick(){
+    const numeroCella = parseInt(this.textContent)
+    console.log(this)
+    if (bombe.includes(numeroCella)){
+        this.classList.add("bomb")
+        alert("Hai calpestato una bomba, prova a vincere nella prossima vita")
+        // prendo i valori del mio array bombe
+        
+        // location.reload()
+    }
     this.classList.toggle("active")
+}
+
+function generatebombNumb(numBomb, numbMaxCell){
+    // il mio array avrà qui i numeri delle mie bombe 
+    const bombContainer = []
+    // fino a quando la lunghezza del mio bombContainer è inferiore al numero di bombe richiesto, eseguirà il ciclo 
+    while ( bombContainer.length < numBomb){
+        // genero la bomba 
+        const bomb = Math.ceil(Math.random() * numbMaxCell)
+        // se la bomba non è inclusa nel container, la aggiungo 
+        if (!bombContainer.includes(bomb)){
+            bombContainer.push(bomb)
+        }
+    }
+    return bombContainer;
 }
