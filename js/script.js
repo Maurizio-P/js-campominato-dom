@@ -83,7 +83,7 @@ function cellClick(){
         // this.classList.add("bomb")
         showBomb()
         alert("Hai calpestato una bomba, prova a vincere nella prossima vita")
-        containerGrid.innerHTML += `<div class="stop-game"`
+        containerGrid.innerHTML += `<div class="stop-game"></div>`
     }
     this.classList.toggle("active")
 }
