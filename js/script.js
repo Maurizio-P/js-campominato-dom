@@ -25,6 +25,7 @@ start.addEventListener("click", function(){
     // 3 stampare la griglia in base al livello scelto
     bombe = generatebombNumb(16, totalCell)
     gridCreate(totalCell)
+    
 })
 
 
@@ -79,11 +80,10 @@ function cellClick(){
     const numeroCella = parseInt(this.textContent)
     console.log(this)
     if (bombe.includes(numeroCella)){
-        this.classList.add("bomb")
+        // this.classList.add("bomb")
+        showBomb()
         alert("Hai calpestato una bomba, prova a vincere nella prossima vita")
-        // prendo i valori del mio array bombe
-        
-        // location.reload()
+        containerGrid.innerHTML += `<div class="stop-game"`
     }
     this.classList.toggle("active")
 }
@@ -101,4 +101,22 @@ function generatebombNumb(numBomb, numbMaxCell){
         }
     }
     return bombContainer;
+}
+
+function showBomb(){
+    // recupero le celle esistenti
+    const listCell = containerGrid.querySelectorAll(".square")
+
+    for(let i = 0; i < bombe.length; i++){
+        const singolaBomba = bombe[i]
+        const indicePerConfronto = singolaBomba - 1 
+
+        if (indicePerConfronto >= listCell.length) {
+            continue
+        }
+
+        const cellBomb = listCell[indicePerConfronto]
+
+        cellBomb.classList.add("bomb")
+    }
 }
